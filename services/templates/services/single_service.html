@@ -1,0 +1,37 @@
+<!-- services/templates/services/single_service.html -->
+{% extends 'main/base.html' %}
+{% block title %}
+    {{ service.name }}
+{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/rating.css' %}">
+<script src="{% static 'js/rating.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+<div class="single-service-container">
+    <div class="rating-section">
+        {% if request.user.is_customer %}
+            {% if service_history %}
+                <h5>Your Rating</h5>
+                <div class="star-rating">
+                    <form id="rate-form" action="{% url 'services:rate_service' service_history_id=service_history.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" id="rating-input" name="rating" value="{{ service_history.rating|default:0 }}">
+                        <div id="star-container"></div>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class='service_info_header'>
+        <h1>{{service.name}} -- {{service.price_hour}}$/hour</h1>
+        <h5>by <a href="/users/profile/{{service.company.user}}">{{service.company.user}}</a></h5>
+    </div>
+    <h3 class="service-field">{{service.field}}</h3>
+    <p class="service-description">{{service.description}}</p>
+    {% if request.user.is_customer %}
+        <a href="/services/{{service.id}}/request_service/" class="request-service-btn">Request Service</a>
+    {% endif %}
+</div>
+{% endblock %}
