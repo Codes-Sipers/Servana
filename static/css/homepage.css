@@ -45,4 +45,16 @@
   /* Transitions */
   --transition-speed: 0.3s;
   --transition-easing: ease;
+
+  /* Z-index */
+  --z-index-header: 1000;
+  --z-index-dropdown: 1000;
+
+  /* Component-specific */
+  --header-height: 70px;
+  --logo-height: 100%;
+  --hero-min-height: calc(100vh - var(--header-height) - 200px);
+  --feature-icon-size: 60px;
+  --dropdown-min-width: 200px;
+  --dropdown-max-height: 400px;
 }
