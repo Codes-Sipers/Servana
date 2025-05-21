@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<div class="register-container">
+    <h1 class="choice-text">Choose your registration type</h1>
+    
+    <div class="choice-container">
+        <div class="choice">
+            <a href="{% url 'users:register_company' %}">
+                <div class="img-container">
+                    <i class="fas fa-building fa-3x"></i>
+                </div>
+                <p class="label-images">Company</p>
+            </a>
+        </div>
+
+        <div class="choice">
+            <a href="{% url 'users:register_customer' %}">
+                <div class="img-container">
+                    <i class="fas fa-user fa-3x"></i>
+                </div>
+                <p class="label-images">Customer</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
